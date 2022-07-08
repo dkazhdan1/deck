@@ -1,1 +1,1 @@
-This is the kong config repsitoryo
+This is the kong config repsitory
