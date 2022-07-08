@@ -1,0 +1,99 @@
+_format_version: "1.1"
+consumers:
+- custom_id: fundserv
+  keyauth_credentials:
+  - key: DEPc0GCLqz5mdwwJL7GyTiM45ZQ3JQgg
+  username: fundserv
+services:
+- connect_timeout: 60000
+  host: iwsapp-ee8863e80-iws.exp-dev01.svc.cluster.local
+  name: if1-test-fundserv-svc
+  plugins:
+  - config:
+      anonymous: null
+      hide_credentials: false
+      key_in_body: false
+      key_in_header: true
+      key_in_query: true
+      key_names:
+      - apikey
+      run_on_preflight: true
+    enabled: true
+    name: key-auth
+    protocols:
+    - grpc
+    - grpcs
+    - http
+    - https
+  port: 80
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  routes:
+  - hosts:
+    - if1-test-fundserv.apps.clusterd.ifdsgroup.ca
+    https_redirect_status_code: 426
+    methods:
+    - GET
+    - POST
+    name: if1-test-fundserv-route
+    path_handling: v1
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    request_buffering: true
+    response_buffering: true
+    strip_path: true
+  write_timeout: 60000
+- connect_timeout: 1000
+  host: iwsapp-ee8863e80-iws.exp-dev01.svc.cluster.local
+  name: if5-test-fundserv
+  port: 80
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  routes:
+  - hosts:
+    - if5-test-fundserv.apps.clusterd.ifdsgroup.ca
+    https_redirect_status_code: 426
+    methods:
+    - GET
+    - POST
+    name: if5-test-fundserv-route
+    path_handling: v1
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    request_buffering: true
+    response_buffering: true
+    strip_path: true
+  write_timeout: 60000
+- connect_timeout: 60000
+  host: iwsapp-e801c276b-iws.exp-dev03.svc.cluster.local
+  name: if6-test-fundserv
+  port: 80
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  routes:
+  - hosts:
+    - if6-test-fundserv.apps.clusterd.ifdsgroup.ca
+    https_redirect_status_code: 426
+    methods:
+    - GET
+    - POST
+    name: if6-test-fundserv-route
+    path_handling: v1
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    request_buffering: true
+    response_buffering: true
+    strip_path: true
+  write_timeout: 60000
