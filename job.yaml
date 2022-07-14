@@ -17,5 +17,5 @@ spec:
               cd /root
               [ ! -d deck ] && git clone https://github.com/dkazhdan1/deck.git && deck dump -o - >/root/deck/kong.yaml && cd deck\
                && git add kong.yaml && tag=`date +"%H-%M-%S-%H:%M"`&& git config --global user.name ifds && git config --global user.email ifds@a.com && git commit -m $tag || true\
-               &&  git push https://dkazhdan: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@github.com/dkazhdan1/deck.git --all
+               &&  git push https://dkazhdan:$TOKEN@github.com/dkazhdan1/deck.git --all
           restartPolicy: Never
