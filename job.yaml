@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: deck-dump
+spec:
+  schedule: "00 14 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: deck
+            image: docker-prod-local.si1ocevar01.clustere.ifdsgroup.ca/ifast/deck:latest
+            command: ["/bin/sh", "-c"]
+            args:
+            - >
+              cd /root
+              [ ! -d deck ] && git clone https://github.com/dkazhdan1/deck.git && deck dump -o - >/root/deck/kong.yaml && cd deck\
+               && git add kong.yaml && tag=`date +"%H-%M-%S-%H:%M"`&& git config --global user.name ifds && git config --global user.email ifds@a.com && git commit -m $tag || true\
+               &&  git push https://dkazhdan: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@github.com/dkazhdan1/deck.git --all
+          restartPolicy: Never
