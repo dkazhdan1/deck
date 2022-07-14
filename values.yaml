@@ -1,0 +1,24 @@
+admin:
+  enabled: true
+  http:
+    containerPort: 8001
+    enabled: true
+    servicePort: 8001
+env:
+  database: postgres
+  prefix: /kong_prefix/
+image:
+  repository: docker-prod-local.si1ocevar01.clustere.ifdsgroup.ca/ifast/kong-1
+  tag: "2.7"
+ingressController:
+  enabled: false
+  installCRDs: false
+postgresql:
+  enabled: true
+  postgresqlDatabase: kong
+  postgresqlUsername: kong
+proxy:
+  enabled: true
+  type: ClusterIP
+service:
+  port: 5432
